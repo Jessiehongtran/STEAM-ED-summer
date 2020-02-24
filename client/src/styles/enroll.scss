@@ -1,0 +1,19 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+
+        option {
+            margin-top: 10px
+        }
+    }
+
+    buttson {
+        width: 10%;
+    }
+}
