@@ -10,6 +10,7 @@ class ProgramDetails extends React.Component {
     }
 
     render(){
+        console.log('props in ProgramDetails', this.props)
         return (
             <div></div>
         )

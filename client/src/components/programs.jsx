@@ -1,5 +1,4 @@
 import React from 'react';
-import {programs} from '../data/programData';
 import '../styles/programs.scss';
 import {Link} from 'react-router-dom';
 
@@ -7,19 +6,24 @@ class Programs extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            programs: programs
+        
         }
     }
 
     render(){
-        console.log('programs', this.state.programs)
+        
         return (
             <div className="programs">
-                {this.state.programs.map(program => (
+                {this.props.programs.map(program => (
                     <div className="each-program" >
                         <img src={program.imageUrl}/>
                         <div className="text">
-                            <Link to='/detail'>
+                            <Link 
+                            to={{
+                                pathname: `/detail/${program.name}`,
+                                state: { program: program }
+                              }}
+                            >
                                 <h1>{program.name}</h1>
                             </Link>
                             <p>{program.type}</p>
