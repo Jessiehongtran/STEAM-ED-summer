@@ -44,7 +44,7 @@ class App extends React.Component {
                   )}}
             />
         <Route 
-              exact path="/enroll" 
+              exact path={`/enroll/:programName`}
               render = {
                 props => {
                   return (

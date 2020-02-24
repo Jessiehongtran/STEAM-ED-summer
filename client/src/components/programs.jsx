@@ -30,7 +30,14 @@ class Programs extends React.Component {
                             <p>Ages {program.age}</p>
                             <p>{program.level}</p>
                             <p>{program.duration}</p>
-                            <button onClick={() => this.props.history.push('/enroll')}>Enroll</button>
+                            <Link 
+                            to={{
+                                pathname: `/enroll/${program.name}`,
+                                state: { program: program }
+                              }}
+                            >
+                            <button>Enroll</button>
+                            </Link>
                         </div>
                         
                     </div>

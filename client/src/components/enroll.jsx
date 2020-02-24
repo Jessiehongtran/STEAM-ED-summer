@@ -6,8 +6,8 @@ class Enroll extends React.Component {
         super(props);
         this.state = {
             campus: '',
-            program: '',
-            schedule: '',
+            program: this.props.location.state.program,
+            schedule: [],
         }
 
         this.handleChangeCampus = this.handleChangeCampus.bind(this)
@@ -30,23 +30,34 @@ class Enroll extends React.Component {
     }
 
     handleChangeSchedule (e){
+        var options = e.target.options
+        var values = []
+        for (var i = 0; i < options.length; i++){
+            if (options[i].selected){
+                values.push(options[i].value)
+            }
+        }
         this.setState({
-            schedule: e.target.value
+            schedule: values
         })
     }
 
-    handleSubmit (){
-
+    handleSubmit (e){
+        e.preventDefault()
+        console.log(this.state)
+      
     }
 
     render(){
         console.log('campus', this.state.campus)
         console.log('program', this.state.program)
+        console.log('schedule', this.state.schedule)
+        console.log('props in Enroll', this.props)
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Campus you would like to enroll
-                    <select onChange={this.handleChangeCampus}>    
+                    <select value="fremont" onChange={this.handleChangeCampus}>    
                         <option value="fremont">Fremont</option>
                         <option value="warmSprings">Warm Springs</option>
                         <option value="misson">Mission</option>
@@ -54,20 +65,49 @@ class Enroll extends React.Component {
                 </label>
                 <label>
                     Program you would like to enroll
-                    <select onChange={this.handleChangeProgram}>    
-                        <option value="1">Program 1</option>
-                        <option value="2">Program 2</option>
-                        <option value="3">Program 3</option>
+                    <select value={this.state.program.id} onChange={this.handleChangeProgram}>    
+                        {/* <option value="1">Intro to Coding, Computer Science fundamental and Robotics (7-14, beginner, 1-week program)</option>
+                        <option value="2">Creative Design with Lego and Little Bits (7-10 yr, beginner, 1-week program)</option>
+                        <option value="3">Engineer your first computer with Kano (10-14 yr, 1-week program)</option>
+                        <option value="4">Code, play and take home Sphero Bolt (7-10 yr, beginner-advance, 2-week program)</option>
+                        <option value="5">Invent the world with Lego Spike (7-14 yr, beginner-advance, 2-week program)</option>
+                        <option value="6">Program and hack your own Sphero RVR (10-14 yr, 2-week program)</option>
+                        <option value="7">Craft your own imagination with Lego, Arduino Robotics, Little Bits(10-14 yr, advance, 2-week program)</option> */} 
+                        <option value={this.state.program.id}>{this.state.program.name}</option>
+                        
                     </select>
                 </label>
-                <label>
-                    When you would like to join
-                    <select onChange={this.handleChangeSchedule}>    
-                        <option value="1">Schedule 1</option>
-                        <option value="2">Schedule 2</option>
-                        <option value="3">Schedule 3</option>
-                    </select>
-                </label>
+                 {this.state.program.id == '2' || this.state.program.id == '3' || this.state.program.id == '4' || this.state.program == '6'? (
+                    <label>
+                    When you would like to join (Ctrl to choose many options)
+                        <select className="schedule" multiple={true} onChange={this.handleChangeSchedule}>    
+                            <option value="6/15-6/26">6/15-6/26</option>
+                            <option value="6/29-7/10">6/29-7/10</option>
+                            <option value="7/13-7/24">7/13-7/24</option>
+                            <option value="7/27-8/7">7/27-8/7</option>
+                            <option value="8/10-8/14">8/10-8/14</option>
+                            <option value="8/17-8/21">8/17-8/21</option>
+                        </select>
+                    </label> 
+                
+                ) : ( 
+                    <label>
+                    When you would like to join (Ctrl to choose many options)
+                        <select className="schedule" multiple={true} onChange={this.handleChangeSchedule}>    
+                            <option value="6/15-6/19">6/15-6/19</option>
+                            <option value="6/22-6/26">6/22-6/26</option>
+                            <option value="6/29-7/3">6/29-7/3</option>
+                            <option value="7/6-7/10">7/6-7/10</option>
+                            <option value="7/13-7/17">7/13-7/17</option>
+                            <option value="7/20-7/24">7/20-7/24</option>
+                            <option value="7/27-7/31">7/27-7/31</option>
+                            <option value="8/3-8/7">8/3-8/7</option>
+                            <option value="8/10-8/14">8/10-8/14</option>
+                            <option value="8/17-8/21s">8/17-8/21</option>
+                        </select>
+                    </label>
+                )}
+                
                 <button>Next</button>
             </form>
         )
