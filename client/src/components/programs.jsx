@@ -15,7 +15,7 @@ class Programs extends React.Component {
         return (
             <div className="programs">
                 {this.props.programs.map(program => (
-                    <div className="each-program" >
+                    <div className="each-program" key={program.id}>
                         <img src={program.imageUrl}/>
                         <div className="text">
                             <Link 
