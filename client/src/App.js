@@ -53,6 +53,16 @@ class App extends React.Component {
                     </>
                   )}}
             />
+        <Route 
+              exact path={`/end`}
+              render = {
+                props => {
+                  return (
+                    <> 
+                      <h1>Thank you for choosing Olive. We'll be in touch with you!</h1>
+                    </>
+                  )}}
+            />
       </Switch>
       
     </div>

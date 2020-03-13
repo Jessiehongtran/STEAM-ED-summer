@@ -66,13 +66,6 @@ class Enroll extends React.Component {
                 <label>
                     Program you would like to enroll
                     <select value={this.state.program.id} onChange={this.handleChangeProgram}>    
-                        {/* <option value="1">Intro to Coding, Computer Science fundamental and Robotics (7-14, beginner, 1-week program)</option>
-                        <option value="2">Creative Design with Lego and Little Bits (7-10 yr, beginner, 1-week program)</option>
-                        <option value="3">Engineer your first computer with Kano (10-14 yr, 1-week program)</option>
-                        <option value="4">Code, play and take home Sphero Bolt (7-10 yr, beginner-advance, 2-week program)</option>
-                        <option value="5">Invent the world with Lego Spike (7-14 yr, beginner-advance, 2-week program)</option>
-                        <option value="6">Program and hack your own Sphero RVR (10-14 yr, 2-week program)</option>
-                        <option value="7">Craft your own imagination with Lego, Arduino Robotics, Little Bits(10-14 yr, advance, 2-week program)</option> */} 
                         <option value={this.state.program.id}>{this.state.program.name}</option>
                         
                     </select>
@@ -108,7 +101,7 @@ class Enroll extends React.Component {
                     </label>
                 )}
                 
-                <button>Next</button>
+                <button onClick={() => this.props.history.push('/end')}>Next</button>
             </form>
         )
     }
